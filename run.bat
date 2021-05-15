@@ -1,0 +1,3 @@
+:bot
+node .
+goto bot
