@@ -8,7 +8,8 @@ module.exports = (client) => {
             dotenvPath,
             [
                 'CLIENT_TOKEN',
-                'CLIENT_PREFIX'
+                'CLIENT_PREFIX',
+                'EMBED_COLOR',
             ].map(s => `${s}=`).join('\n'),
         )
     }
