@@ -1,0 +1,28 @@
+{
+  "name": "muzika",
+  "version": "1.0.0",
+  "description": "Muzika",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpeckyYT/Muzika.git"
+  },
+  "author": "SpeckyYT",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/SpeckyYT/Muzika/issues"
+  },
+  "homepage": "https://github.com/SpeckyYT/Muzika#readme",
+  "dependencies": {
+    "coffeescript": "^2.5.1",
+    "colors": "^1.4.0",
+    "discord-command-parser": "^1.5.3",
+    "discord-music-player": "^7.1.4",
+    "discord.js": "github:discordjs/discord.js",
+    "dotenv": "^9.0.2",
+    "filehound": "^1.17.4"
+  }
+}
