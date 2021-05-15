@@ -3,7 +3,7 @@ path = require 'path'
 module.exports = (client) =>
     events = client.loader path.join process.cwd(), 'events'
 
-    client.depsLoader events, 'EVENTS', ({ path, value:pull }) => 
+    client.depsLoader events, 'EVENTS', ({ path, value:pull }) =>
         eventNames = if Array.isArray pull.event then pull.event else [pull.event]
         emitterName = pull.emitter || 'client'
         func = client.getType pull, 'function'
@@ -13,4 +13,4 @@ module.exports = (client) =>
             when 'process' then process
             when 'stdin' then process.openStdin()
             else client
-        emitter.on event, func.bind null, client for event in eventNames 
+        emitter.on event, func.bind null, client for event in eventNames
