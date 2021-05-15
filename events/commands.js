@@ -4,7 +4,6 @@ const { parse } = require('discord-command-parser');
 module.exports = {
     event: 'message',
     call(client, msg){
-        console.log(msg)
         const prefix = process.env.CLIENT_PREFIX
 
         const cmd = parse(
