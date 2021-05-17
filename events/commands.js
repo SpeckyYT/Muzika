@@ -24,7 +24,8 @@ module.exports = {
             const func = client.getType(command,'function');
             if(func) func(client, msg, cmd);
         }catch(err){
-            msg.channel.send(
+            console.log(err);
+            return msg.reply(
                 new MessageEmbed()
                 .setTitle('Error!')
                 .setDescription(`${err}`.split('\n')[0])

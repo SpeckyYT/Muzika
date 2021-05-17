@@ -22,6 +22,7 @@ for(const handler of handlers){
         require(handler)(client);
         console.log(`${'HANDLER LOADED'.padEnd(signLength).green}${handler.padStart(maxLength).cyan}`);
     }catch(err){
-        console.error(`${'HANDLER ERROR'.padEnd(signLength).red}${handler.padStart(maxLength).cyan} | ${err}`);
+        console.error(`${'HANDLER ERROR'.padEnd(signLength).red}${handler.padStart(maxLength).cyan}`);
+        console.error(err)
     }
 }
