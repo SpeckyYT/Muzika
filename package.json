@@ -23,6 +23,9 @@
     "discord-music-player": "^7.1.4",
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^9.0.2",
-    "filehound": "^1.17.4"
+    "filehound": "^1.17.4",
+    "opusscript": "0.0.8",
+    "pretty-ms": "^7.0.1",
+    "string-similarity": "^4.0.4"
   }
 }
