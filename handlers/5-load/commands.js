@@ -13,13 +13,15 @@ module.exports = (client) => {
         return false
     }
 
-    const commands = client.loader(path.join(process.cwd(),'commands'));
-
-    client.depsLoader(commands, 'COMMANDS', ({ path, value:pull }) => {
-        const [name,...aliases] = Array.isArray(pull.trigger) ? pull.trigger : [pull.trigger];
-        const func = client.getType(pull,'function');
-        if(!func) throw new Error('No function found');
-        client.commands.set(name, pull);
-        for(const alias of aliases) client.aliases.set(alias,name);
-    })
+    return client.depsLoader(
+        path.join(process.cwd(),'commands'),
+        'COMMANDS',
+        function({ path, value:pull }){
+            const [name,...aliases] = Array.isArray(pull.trigger) ? pull.trigger : [pull.trigger];
+            const func = client.getType(pull,'function');
+            if(!func) throw new Error('No function found');
+            client.commands.set(name, pull);
+            for(const alias of aliases) client.aliases.set(alias,name);
+        }
+    )
 }
