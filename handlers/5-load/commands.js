@@ -20,8 +20,8 @@ module.exports = (client) => {
             const [name,...aliases] = Array.isArray(pull.trigger) ? pull.trigger : [pull.trigger];
             const func = client.getType(pull,'function');
             if(!func) throw new Error('No function found');
-            client.commands.set(name, pull);
-            for(const alias of aliases) client.aliases.set(alias,name);
+            client.commands.set(name.toLowerCase(), pull);
+            for(const alias of aliases) client.aliases.set(alias.toLowerCase(),name.toLowerCase());
         }
     )
 }

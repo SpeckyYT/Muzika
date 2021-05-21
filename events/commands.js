@@ -17,7 +17,7 @@ module.exports = {
         )
         if(!cmd.success) return;
 
-        const command = client.getCommand(cmd.command);
+        const command = client.getCommand(cmd.command.toLowerCase());
         if(!command) return; // TODO 'bro wtf, dat command no exist'
 
         try{
