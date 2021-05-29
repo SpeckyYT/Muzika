@@ -7,14 +7,24 @@ module.exports =
     call: (client, msg, ctx) ->
         if ctx.arguments.length
             command = client.getCommand ctx.arguments[0]
-            msg.reply singleCommand command, client.embed()
+            msg.reply singleCommand client, command, client.embed()
         else
-            cmds = client.commands.map (cmd) -> cmd.trigger[0]
-            msg.reply client.embed().setDescription cmds.join ', '
+            msg.reply fullHelpPage client, client.commands, client.embed()
 
-singleCommand = (cmd, embed) ->
+block = (c) -> "`#{c}`"
+
+singleCommand = (client, cmd, embed) ->
     [ name, ...aliases ] = cmd.trigger
-    embed.setDescription """
-        Name: `#{name}`
-        Aliases: `#{aliases.join(', ') || 'None...'}`
-    """
+    embed.setTitle "Command: `#{name}`"
+    embed.addFields
+            name: 'Aliases'
+            value: "#{aliases.map(block).join(' ') || 'None...'}"
+            inline: yes
+        ,
+            name: 'Category'
+            value: "`#{cmd.category || 'Other'}`"
+            inline: yes
+    embed
+
+fullHelpPage = (client, cmds, embed) ->
+    embed
