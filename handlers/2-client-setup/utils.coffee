@@ -16,7 +16,7 @@ module.exports = (client) ->
 
     client.success = (desc) ->
         embed = client.embed()
-        .setColor '#4BB543'
+        .setColor process.env.SUCCESS_COLOR
         .setTitle 'Success!'
         if desc
             embed
@@ -25,7 +25,7 @@ module.exports = (client) ->
 
     client.error = (desc) ->
         embed = client.embed()
-        .setColor '#FF9494'
+        .setColor process.env.ERROR_COLOR
         .setTitle 'Error...'
         if desc
             embed

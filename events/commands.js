@@ -29,7 +29,7 @@ module.exports = {
                 new MessageEmbed()
                 .setTitle('Error!')
                 .setDescription(`${err}`.split('\n')[0])
-                .setColor('#FF0000')
+                .setColor(process.env.ERROR_COLOR)
             )
         }
     }
