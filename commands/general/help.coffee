@@ -6,12 +6,22 @@ module.exports =
     ]
     call: (client, msg, ctx) ->
         if ctx.arguments.length
-            command = client.getCommand ctx.arguments[0]
-            msg.reply singleCommand client, command, client.embed()
+            command = client.getCommand ctx.arguments[0].toLowerCase()
+            msg.reply(
+                if command
+                    singleCommand client, command, client.embed()
+                else
+                    unexistingCommand client, client.embed()
+            )
         else
             msg.reply fullHelpPage client, client.commands, client.embed()
 
 block = (c) -> "`#{c}`"
+
+unexistingCommand = (client, embed) ->
+    embed.setTitle "Command not found!"
+    embed.setColor process.env.ERROR_COLOR
+    embed
 
 singleCommand = (client, cmd, embed) ->
     [ name, ...aliases ] = cmd.trigger
