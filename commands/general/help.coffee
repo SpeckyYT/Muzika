@@ -43,5 +43,26 @@ singleCommand = (client, cmd, embed) ->
     ].filter (n) -> n
     embed
 
-fullHelpPage = (client, cmds, embed) ->
+fullHelpPage = (client, commands, embed) ->
+    prefix = process.env.CLIENT_PREFIX
+    help = module.exports.trigger[0]
+
+    categories = {}
+
+    commands.forEach (cmd) ->
+        category = cmd.category or 'other'
+        if categories[category]
+            categories[category].push cmd
+        else
+            categories[category] = [cmd]
+
+    for [category, cmds] in Object.entries categories
+        embed.addFields
+            name: "#{category} [#{cmds.length}]"
+            value: "#{cmds.map((cmd) -> block cmd.trigger[0]).join ' '}"
+
+    embed.setDescription """
+        Prefix: `#{prefix}`
+        Discover command: `#{prefix}#{help} <command>`
+    """
     embed
