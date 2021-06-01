@@ -58,7 +58,7 @@ fullHelpPage = (client, commands, embed) ->
 
     for [category, cmds] in Object.entries categories
         embed.addFields
-            name: "#{category} [#{cmds.length}]"
+            name: "#{category.capitalize()} [#{cmds.length}]"
             value: "#{cmds.map((cmd) -> block cmd.trigger[0]).join ' '}"
 
     embed.setDescription """
