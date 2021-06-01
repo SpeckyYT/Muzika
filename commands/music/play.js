@@ -3,6 +3,7 @@ module.exports = {
         'play',
         'p',
     ],
+    category: 'music',
     async call(client, msg, ctx){
         if(!ctx.body) return msg.reply('You have to include a song to play.');
         const search = {

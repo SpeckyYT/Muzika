@@ -54,6 +54,7 @@ module.exports = {
     trigger: [
         'radio',
     ],
+    category: 'music',
     async call(client, msg, ctx){
         if(!ctx.body) return msg.reply(embed(client));
         const playlist =

@@ -3,6 +3,7 @@ module.exports =
         'volume'
         'vol'
     ]
+    category: 'music'
     call: (client, msg, ctx) =>
         if not client.player.isPlaying msg
             return msg.reply client.notPlaying msg
