@@ -1,3 +1,7 @@
+categoryEmojis =
+    music: '🎵'
+    other: '♻️'
+
 module.exports =
     trigger: [
         'help'
@@ -50,15 +54,20 @@ fullHelpPage = (client, commands, embed) ->
     categories = {}
 
     commands.forEach (cmd) ->
-        category = cmd.category or 'other'
+        category = (cmd.category or 'other').toLowerCase()
         if categories[category]
             categories[category].push cmd
         else
             categories[category] = [cmd]
 
-    for [category, cmds] in Object.entries categories
+    categories = Object.entries categories
+    .sort (a,b) ->
+        a[0].localeCompare b[0]
+
+    for [category, cmds] in categories
+        emoji = if categoryEmojis[category] then "#{categoryEmojis[category]} " else ''
         embed.addFields
-            name: "#{category.capitalize()} [#{cmds.length}]"
+            name: "#{emoji}#{category.capitalize()} [#{cmds.length}]"
             value: "#{cmds.map((cmd) -> block cmd.trigger[0]).join ' '}"
 
     embed.setDescription """
