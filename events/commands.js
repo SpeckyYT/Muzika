@@ -4,11 +4,16 @@ const { parse } = require('discord-command-parser');
 module.exports = {
     event: 'message',
     call(client, msg){
-        const prefix = process.env.CLIENT_PREFIX
+        if(msg.author.bot) return;
+
+        const prefixes = [
+            process.env.CLIENT_PREFIX,
+            `${client.user}`,
+        ]
 
         const cmd = parse(
             msg,
-            prefix,
+            prefixes,
             {
                 allowBots: false,
                 allowSpaceBeforeCommand: true,
