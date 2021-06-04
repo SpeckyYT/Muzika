@@ -14,8 +14,6 @@ module.exports = {
     async call(client, msg, ctx){
         if(!ctx.body)
             return msg.reply(client.error('No prefix provided'));
-        if(!msg.guild)
-            return msg.reply(client.error('Server...'));
 
         const prefixkey = client.dbKey(msg.guild.id,'prefix');
 
