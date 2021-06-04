@@ -45,7 +45,7 @@ module.exports = {
                                 return "This command can't be run in DMs.";
                             continue;
                         case 'owner':
-                            if(!value && process.env.OWNERS.includes(msg.author.id))
+                            if(value && !process.env.OWNERS.includes(msg.author.id))
                                 return "This command is only available for bot owners.";
                             continue;
                     }
