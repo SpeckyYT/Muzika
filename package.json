@@ -27,6 +27,7 @@
     "filehound": "^1.17.4",
     "opusscript": "0.0.8",
     "pretty-ms": "^7.0.1",
+    "sigidb": "^1.0.7",
     "string-similarity": "^4.0.4"
   }
 }

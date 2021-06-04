@@ -1,5 +1,6 @@
 # Muzika
 .vscode/
+*.sqlite
 
 # Logs
 logs
