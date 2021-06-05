@@ -21,12 +21,12 @@ module.exports = (client) => {
             const func = client.getType(pull,'function');
             if(!func) throw new Error('No function found');
 
-            if(!pull.limit || typeof pull.limit != 'object') pull.limit = {}
+            if(!pull.limits || typeof pull.limits != 'object') pull.limits = {}
             switch((pull.category||'').toLowerCase()){
                 case 'owner':
-                    pull.limit.owner = true; break;
+                    pull.limits.owner = true; break;
                 case 'music':
-                    pull.limit.dms = false; break;
+                    pull.limits.dms = false; break;
             }
 
             client.commands.set(name.toLowerCase(), pull);
