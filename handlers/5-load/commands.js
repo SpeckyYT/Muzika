@@ -20,6 +20,15 @@ module.exports = (client) => {
             const [name,...aliases] = Array.isArray(pull.trigger) ? pull.trigger : [pull.trigger];
             const func = client.getType(pull,'function');
             if(!func) throw new Error('No function found');
+
+            if(!pull.limit || typeof pull.limit != 'object') pull.limit = {}
+            switch((pull.category||'').toLowerCase()){
+                case 'owner':
+                    pull.limit.owner = true; break;
+                case 'music':
+                    pull.limit.dms = false; break;
+            }
+
             client.commands.set(name.toLowerCase(), pull);
             for(const alias of aliases) client.aliases.set(alias.toLowerCase(),name.toLowerCase());
         }
