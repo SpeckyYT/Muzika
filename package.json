@@ -25,6 +25,7 @@
     "dotenv": "^9.0.2",
     "dotenv-stringify": "^2.0.5",
     "filehound": "^1.17.4",
+    "node-cron": "^3.0.0",
     "opusscript": "0.0.8",
     "pretty-ms": "^7.0.1",
     "sigidb": "^1.0.7",
