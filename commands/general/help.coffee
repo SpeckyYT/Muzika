@@ -5,6 +5,7 @@ categoryEmojis =
     config: '⚙️'
     music: '🎵'
     other: '♻️'
+    owner: '👮'
 
 module.exports =
     trigger: [
@@ -17,6 +18,7 @@ module.exports =
             ...client.getPrefixes msg
             process.env.CLIENT_PREFIX
         ][0];
+        otherPrefixes = client.getPrefixes(msg).filter (p) -> p != prefix
         embed = client.embed()
         if ctx.arguments.length
             command = client.getCommand ctx.arguments[0].toLowerCase()
@@ -70,7 +72,17 @@ module.exports =
             embed.setDescription """
                 Prefix: `#{prefix}`
                 Discover a command: `#{prefix} #{help} <command>`
-            """
+                #{
+                    [
+                        if otherPrefixes.length
+                            "Other prefix(es): #{otherPrefixes.map((p) -> block p).join ' '}"
+                    ]
+                    .filter (n) -> n
+                    .join '\n'
+                }
+            """.trim()
             msg.reply embed
 
-block = (c) -> "`#{c}`"
+block = (c,b) ->
+    if typeof b isnt 'string' then b = ''
+    "#{b or '`'}#{c}#{b or '`'}"
