@@ -3,7 +3,7 @@
 module.exports =
     event: 'data'
     emitter: 'stdin'
-    call: (client, data) =>
+    call: (client, data) ->
         text = "#{data}".trim()
         return if not text
         console.log try

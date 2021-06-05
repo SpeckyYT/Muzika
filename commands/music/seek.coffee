@@ -10,6 +10,6 @@ module.exports =
             return msg.reply client.notPlaying msg
         input = parseInt ctx.body
         return msg.reply client.error 'Input is not a number.' if input < 0 or isNaN input
-        time = input * 1000;
+        time = input * 1000
         await client.player.seek msg, time
         msg.reply client.success "Successfully seeked to #{prettyMS time}."

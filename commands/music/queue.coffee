@@ -1,4 +1,4 @@
-queueLength = 10;
+queueLength = 10
 
 module.exports =
     trigger: [
@@ -14,7 +14,7 @@ module.exports =
 
         queue = client.player.getQueue msg
 
-        [current, ...next] = queue.songs;
+        [current, ...next] = queue.songs
 
         # Now Playing
         string1 = "Now Playing: #{current.author} - #{current.name}".code 'css'

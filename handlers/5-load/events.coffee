@@ -1,6 +1,6 @@
 path = require 'path'
 
-module.exports = (client) =>
+module.exports = (client) ->
     events = client.loader
 
     client.depsLoader(

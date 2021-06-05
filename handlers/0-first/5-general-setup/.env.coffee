@@ -24,7 +24,7 @@ module.exports = (client) ->
             newEnv = Object.assign {}, env
             for [key,value] in Object.entries newEnv
                 if typeof process.env[key] isnt 'undefined'
-                    newEnv[key] = process.env[key];
+                    newEnv[key] = process.env[key]
             fs.writeFileSync dotenvPath, stringify newEnv
             require('dotenv').config()
             break

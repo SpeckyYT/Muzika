@@ -17,7 +17,7 @@ module.exports =
         prefix = [
             ...client.getPrefixes msg
             process.env.CLIENT_PREFIX
-        ][0];
+        ][0]
         otherPrefixes = client.getPrefixes(msg).filter (p) -> p != prefix
         embed = client.embed()
         if ctx.arguments.length

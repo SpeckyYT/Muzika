@@ -4,7 +4,7 @@ module.exports =
         'vol'
     ]
     category: 'music'
-    call: (client, msg, ctx) =>
+    call: (client, msg, ctx) ->
         if not client.player.isPlaying msg
             return msg.reply client.notPlaying msg
         volume = parseInt ctx.body
