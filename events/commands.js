@@ -48,6 +48,16 @@ module.exports = {
                             if(value && !process.env.OWNERS.includes(msg.author.id))
                                 return "This command is only available for bot owners.";
                             continue;
+                        case 'vc':
+                            if(value && !msg?.member?.voice?.channel)
+                                return "This command can be only run while being in a Voice Channel.";
+                            continue;
+                        case 'sameVC':
+                            if(
+                                value && msg?.guild?.me?.voice?.channelID &&
+                                msg?.member?.voice?.channelID != msg.guild.me.voice.channelID
+                            )
+                                return `This command can be only run if you're in the same Voice Channel as ${client.user.username}`;
                     }
                 }
             }

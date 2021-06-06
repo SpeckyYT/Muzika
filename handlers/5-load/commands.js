@@ -26,7 +26,10 @@ module.exports = (client) => {
                 case 'owner':
                     pull.limits.owner = true; break;
                 case 'music':
-                    pull.limits.dms = false; break;
+                    pull.limits.dms = false;
+                    pull.limits.vc = true;
+                    pull.limits.sameVC = true;
+                    break;
             }
 
             client.commands.set(name.toLowerCase(), pull);
