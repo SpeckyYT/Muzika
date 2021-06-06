@@ -24,11 +24,11 @@ module.exports =
             command = client.getCommand ctx.arguments[0].toLowerCase()
             msg.reply(
                 if command
-                    [ name, ...aliases ] = cmd.trigger
+                    [ name, ...aliases ] = command.trigger
                     embed.setTitle "Command: `#{name}`"
                     embed.addFields [
                             name: 'Usage'
-                            value: "`#{prefix}#{name}#{if cmd.usage then " #{cmd.usage}" else ''}`"
+                            value: "`#{prefix}#{name}#{if command.usage then " #{command.usage}" else ''}`"
                             inline: yes
                         ,
                             if aliases.length > 0
@@ -38,7 +38,7 @@ module.exports =
                         ,
 
                             name: 'Category'
-                            value: "`#{cmd.category || 'Other'}`"
+                            value: "`#{command.category || 'Other'}`"
                             inline: yes
                     ].filter (n) -> n
                     embed
