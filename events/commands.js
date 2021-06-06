@@ -56,10 +56,7 @@ module.exports = {
         const limit = limits(command);
         if(limit) return msg.reply(client.error(limit));
 
-        promisify(
-            client.getType(command,'function'),
-            client, msg, ctx,
-        )
+        promisify(client.getType(command,'function'))(client, msg, ctx)
         .then(res => {
             if(res instanceof MessageEmbed) return msg.reply(res);
             if(typeof res == 'string') return msg.reply(res);
@@ -75,14 +72,15 @@ module.exports = {
     }
 }
 
-const promisify = (f,...params) =>
-    new Promise(async (res,rej) => {
-        if(typeof f != 'function') res();
-        try{
-            res(await f(...params));
-        }catch(err){
-            rej(err);
-        }
-    })
+const promisify = (f) =>
+    (...params) =>
+        new Promise(async (res,rej) => {
+            if(typeof f != 'function') res();
+            try{
+                res(await f(...params));
+            }catch(err){
+                rej(err);
+            }
+        })
 
 const isObject = (obj) => typeof obj == 'object' && obj;
