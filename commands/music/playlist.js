@@ -5,7 +5,7 @@ module.exports = {
     ],
     category: 'music',
     async call(client, msg, ctx){
-        if(!ctx.body) return client.cmdError('You have to include a playlist that you want to queue.');
+        if(!ctx.body) return client.error('You have to include a playlist that you want to queue.');
 
         const playlist = await client.player.playlist(msg, {
             search: ctx.body,
