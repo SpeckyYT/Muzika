@@ -1,6 +1,3 @@
-sigidb = require 'sigidb'
-guildsdb = sigidb 'guilds.sqlite'
-
 categoryEmojis =
     config: '⚙️'
     music: '🎵'
