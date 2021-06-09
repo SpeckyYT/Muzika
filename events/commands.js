@@ -48,7 +48,7 @@ module.exports = {
                 [
                     'owner',
                     "This command is only available for bot owners.",
-                    v => v && !process.env.OWNERS.includes(msg.author.id),
+                    v => v && !msg.author.id.isOwner(),
                 ],
                 [
                     'vc',

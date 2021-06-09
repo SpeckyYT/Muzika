@@ -8,3 +8,6 @@ module.exports = (client) ->
         return "#{@}" if not @.length
         [ first, ...rest ] = @
         "#{first.toUpperCase()}#{rest.join ''}"
+
+    String::isOwner = () ->
+        process.env.OWNERS.includes String @

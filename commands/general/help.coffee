@@ -61,6 +61,11 @@ module.exports =
                 a[0].localeCompare b[0]
 
             for [category, cmds] in categories
+                switch category
+                    when 'owner'
+                        if !msg.author.id.isOwner()
+                            continue
+
                 emoji = if categoryEmojis[category] then "#{categoryEmojis[category]} " else ''
                 embed.addFields
                     name: "#{emoji}#{category.capitalize()} [#{cmds.length}]"
