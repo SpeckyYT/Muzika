@@ -32,38 +32,51 @@ module.exports = {
         const command = client.getCommand(ctx.command.toLowerCase());
         if(!isObject(command)) return; // TODO 'bro wtf, dat command no exist'
 
-        function limits(command){
-            if(isObject(command.limits)){
-                for(const [key, value] of Object.entries(command.limits)){
-                    switch(key){
-                        case 'guilds':
-                            if(!value && msg.guild)
-                                return "This command can't be run in guilds.";
-                            continue;
-                        case 'dms':
-                            if(!value && msg.channel.type == 'dm')
-                                return "This command can't be run in DMs.";
-                            continue;
-                        case 'owner':
-                            if(value && !process.env.OWNERS.includes(msg.author.id))
-                                return "This command is only available for bot owners.";
-                            continue;
-                        case 'vc':
-                            if(value && !msg?.member?.voice?.channel)
-                                return "This command can be only run while being in a Voice Channel.";
-                            continue;
-                        case 'sameVC':
-                            if(
-                                value && msg?.guild?.me?.voice?.channelID &&
-                                msg?.member?.voice?.channelID != msg.guild.me.voice.channelID
-                            )
-                                return `This command can be only run if you're in the same Voice Channel as ${client.user.username}`;
+        function checkLimits(command){
+            if(!isObject(command.limits)) return;
+            const limits = [
+                [
+                    'guilds',
+                    "This command can't be run in guilds.",
+                    v => !v && msg.guild,
+                ],
+                [
+                    'dms',
+                    "This command can't be run in DMs.",
+                    v => !v && msg.channel.type == 'dm',
+                ],
+                [
+                    'owner',
+                    "This command is only available for bot owners.",
+                    v => v && !process.env.OWNERS.includes(msg.author.id),
+                ],
+                [
+                    'vc',
+                    "This command can be only run while being in a Voice Channel.",
+                    v => v && !msg?.member?.voice?.channel,
+                ],
+                [
+                    'sameVC',
+                    `This command can be only run if you're in the same Voice Channel as ${client.user.username}`,
+                    v => v && msg?.guild?.me?.voice?.channelID &&
+                        msg?.member?.voice?.channelID != msg.guild.me.voice.channelID,
+                ],
+                [
+                    'isPlaying',
+                    "This command can be only run if the bot is playing music.",
+                    v => v && !client.player.isPlaying(msg),
+                ],
+            ];
+            for(const [key,value,func] of limits){
+                if(key in command.limits){
+                    if(func(command.limits[key])){
+                        return value;
                     }
                 }
             }
         }
 
-        const limit = limits(command);
+        const limit = checkLimits(command);
         if(limit) return msg.reply(client.error(limit));
 
         promisify(client.getType(command,'function'))(client, msg, ctx)
