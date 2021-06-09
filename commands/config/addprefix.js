@@ -9,7 +9,7 @@ module.exports = {
     ],
     category: 'config',
     limits: {
-        dms: false,
+        guilds: true,
         userPerms: [
             'MANAGE_GUILD',
         ],
