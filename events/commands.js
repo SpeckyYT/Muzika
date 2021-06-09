@@ -37,13 +37,13 @@ module.exports = {
             const limits = [
                 [
                     'guilds',
-                    "This command can't be run in guilds.",
-                    v => !v && msg.guild,
+                    v => `This command ${v ? "can only be run" : "can't be run"} in servers.`,
+                    v => !v != !msg.guild,
                 ],
                 [
                     'dms',
-                    "This command can't be run in DMs.",
-                    v => !v && msg.channel.type == 'dm',
+                    v => `This command ${v ? "can only be run" : "can't be run"} in DMs.`,
+                    v => !v != !(msg.channel.type == 'dm'),
                 ],
                 [
                     'owner',
