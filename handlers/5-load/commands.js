@@ -22,13 +22,25 @@ module.exports = (client) => {
             if(!func) throw new Error('No function found');
 
             if(!pull.limits || typeof pull.limits != 'object') pull.limits = {}
+
+            function fixLimits(obj){
+                for(const [key,value] of Object.entries(obj))
+                    if(!(key in pull.limits))
+                        pull.limits[key] = value;
+            }
+
             switch((pull.category||'').toLowerCase()){
                 case 'owner':
-                    pull.limits.owner = true; break;
+                    fixLimits({
+                        owner: true,
+                    });
+                    break;
                 case 'music':
-                    pull.limits.dms = false;
-                    pull.limits.vc = true;
-                    pull.limits.sameVC = true;
+                    fixLimits({
+                        guilds: true,
+                        vc: true,
+                        sameVC: true,
+                    });
                     break;
             }
 
