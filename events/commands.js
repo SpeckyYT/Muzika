@@ -66,11 +66,21 @@ module.exports = {
                     "This command can be only run if the bot is playing music.",
                     v => v && !client.player.isPlaying(msg),
                 ],
+                [
+                    'botPerms',
+                    perms => `I'm missing the following permission(s): \`${msg.guild.me.permissions.missing(perms).join(' ')}\``,
+                    perms => msg?.guild?.me ? !msg.guild.me.permissions.has(perms) : false,
+                ],
+                [
+                    'userPerms',
+                    perms => `You're missing the following permission(s): \`${msg.member.permissions.missing(perms).join(' ')}\``,
+                    perms => msg.member ? !msg.member.permissions.has(perms) : false,
+                ],
             ];
             for(const [key,value,func] of limits){
                 if(key in command.limits){
                     if(func(command.limits[key])){
-                        return value;
+                        return typeof value == 'function' ? value(command.limits[key]) : value;
                     }
                 }
             }
