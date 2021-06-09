@@ -10,6 +10,9 @@ module.exports = {
     category: 'config',
     limits: {
         dms: false,
+        userPerms: [
+            'MANAGE_GUILD',
+        ],
     },
     async call(client, msg, ctx){
         if(!ctx.body)
