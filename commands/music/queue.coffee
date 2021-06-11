@@ -9,9 +9,6 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        if not client.player.isPlaying msg
-            return msg.reply client.notPlaying msg
-
         queue = client.player.getQueue msg
 
         [current, ...next] = queue.songs

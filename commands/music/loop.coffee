@@ -4,8 +4,6 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        if not client.player.isPlaying msg
-            return msg.reply client.notPlaying msg
         stateChange = switch ctx.arguments[0].toLowerCase()
             when 'yes', 'true', 'on' then true
             when 'no', 'false', 'off' then false

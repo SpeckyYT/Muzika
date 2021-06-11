@@ -5,9 +5,6 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        if not client.player.isPlaying msg
-            return msg.reply client.notPlaying msg
-
         song = client.player.nowPlaying msg
 
         msg.reply(
