@@ -55,6 +55,9 @@ module.exports = {
         'radio',
     ],
     category: 'music',
+    limits: {
+        isPlaying: false,
+    },
     async call(client, msg, ctx){
         if(!ctx.body) return msg.reply(embed(client));
         const playlist =
@@ -67,7 +70,6 @@ module.exports = {
             }))
             .sort((a,b) => b.value-a.value)[0].radio;
 
-        if(client.player.isPlaying(msg)) client.player.clearQueue(msg);
         await client.player.playlist(msg, {
             search: playlist.url,
             requestedBy: msg.author.tag,

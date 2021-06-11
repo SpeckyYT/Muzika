@@ -4,6 +4,9 @@ module.exports = {
         'p',
     ],
     category: 'music',
+    limits: {
+        isPlaying: null,
+    },
     async call(client, msg, ctx){
         if(!ctx.body) return msg.reply('You have to include a song to play.');
         const search = {

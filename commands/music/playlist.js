@@ -4,6 +4,9 @@ module.exports = {
         'pl',
     ],
     category: 'music',
+    limits: {
+        isPlaying: null,
+    },
     async call(client, msg, ctx){
         if(!ctx.body) return client.error('You have to include a playlist that you want to queue.');
 
