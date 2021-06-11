@@ -63,8 +63,8 @@ module.exports = {
                 ],
                 [
                     'isPlaying',
-                    "This command can be only run if the bot is playing music.",
-                    v => v && !client.player.isPlaying(msg),
+                    v => `This command ${v ? "can only be" : "can't be" } run if the bot is playing music.`,
+                    v => !v != !client.player.isPlaying(msg),
                 ],
                 [
                     'botPerms',
