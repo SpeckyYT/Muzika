@@ -78,10 +78,9 @@ module.exports = {
                 ],
             ];
             for(const [key,value,func] of limits){
-                if(key in command.limits){
-                    if(func(command.limits[key])){
-                        return typeof value == 'function' ? value(command.limits[key]) : value;
-                    }
+                if([null,undefined].includes(command.limits[key])) continue;
+                if(func(command.limits[key])){
+                    return typeof value == 'function' ? value(command.limits[key]) : value;
                 }
             }
         }
