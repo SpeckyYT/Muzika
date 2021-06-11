@@ -31,8 +31,3 @@ module.exports = (client) ->
             embed
             .setDescription desc
         embed
-
-    client.notPlaying = ->
-        client.embed()
-        .setTitle 'Piano! No music is playing!'
-        .setDescription 'This command requires a song to play.'
