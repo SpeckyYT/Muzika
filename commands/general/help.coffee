@@ -58,8 +58,7 @@ module.exports =
                     categories[category] = [cmd]
 
             categories = Object.entries categories
-            .sort (a,b) ->
-                a[0].localeCompare b[0]
+            .sort ([a],[b]) -> a.localeCompare b
 
             for [category, cmds] in categories
                 switch category
@@ -70,7 +69,12 @@ module.exports =
                 emoji = if categoryEmojis[category] then "#{categoryEmojis[category]} " else ''
                 embed.addFields
                     name: "#{emoji}#{category.capitalize()} [#{cmds.length}]"
-                    value: "#{cmds.map((cmd) -> block cmd.trigger[0]).join ' '}"
+                    value: "#{
+                        cmds
+                        .map (cmd) -> block cmd.trigger[0]
+                        .sort (a,b) -> a.localeCompare b
+                        .join ' '
+                    }"
 
             embed.setDescription """
                 Prefix: `#{prefix}`
