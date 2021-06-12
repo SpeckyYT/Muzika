@@ -55,6 +55,7 @@ module.exports = {
         'radio',
     ],
     category: 'music',
+    usage: '[radio name]',
     limits: {
         isPlaying: false,
     },

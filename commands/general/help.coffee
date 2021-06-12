@@ -10,6 +10,7 @@ module.exports =
         'commands'
         'info'
     ]
+    usage: '[command]'
     call: (client, msg, ctx) ->
         prefix = [
             ...client.getPrefixes msg

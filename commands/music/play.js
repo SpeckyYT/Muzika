@@ -4,6 +4,7 @@ module.exports = {
         'p',
     ],
     category: 'music',
+    usage: '<song name/link>',
     limits: {
         isPlaying: null,
     },

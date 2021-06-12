@@ -14,6 +14,7 @@ module.exports =
         'evaluate'
     ]
     category: 'owner'
+    usage: '<code>'
     call: (client, msg, ctx) ->
         if not ctx.body
             return msg.reply client.error 'No text to evaluate'

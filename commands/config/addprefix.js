@@ -8,6 +8,7 @@ module.exports = {
         'ap',
     ],
     category: 'config',
+    usage: '<prefix>',
     limits: {
         guilds: true,
         userPerms: [

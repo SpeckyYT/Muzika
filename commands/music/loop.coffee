@@ -3,6 +3,7 @@ module.exports =
         'loop'
     ]
     category: 'music'
+    usage: '<yes/no>'
     call: (client, msg, ctx) ->
         stateChange = switch ctx.arguments[0].toLowerCase()
             when 'yes', 'true', 'on' then true

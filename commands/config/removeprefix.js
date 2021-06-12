@@ -8,6 +8,7 @@ module.exports = {
         'rp',
     ],
     category: 'config',
+    usage: '<prefix>',
     limits: {
         guilds: true,
         userPerms: [

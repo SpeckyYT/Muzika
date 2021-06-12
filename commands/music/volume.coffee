@@ -4,6 +4,7 @@ module.exports =
         'vol'
     ]
     category: 'music'
+    usage: '<percentage>'
     call: (client, msg, ctx) ->
         volume = parseInt ctx.body
         if isNaN volume

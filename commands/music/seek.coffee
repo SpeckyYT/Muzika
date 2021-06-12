@@ -5,6 +5,7 @@ module.exports =
         'seek'
     ]
     category: 'music'
+    usage: '<seconds>'
     call: (client, msg, ctx) ->
         input = parseInt ctx.body
         return msg.reply client.error 'Input is not a number.' if input < 0 or isNaN input
