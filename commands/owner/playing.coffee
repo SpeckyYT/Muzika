@@ -5,4 +5,4 @@ module.exports =
     ]
     category: 'owner'
     call: (client, msg, ctx) ->
-        msg.reply client.embed "#{client.player.queues.size} queues are open."
+        client.embed "#{client.player.queues.size} queues are open."

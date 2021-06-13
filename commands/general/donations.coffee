@@ -18,4 +18,4 @@ module.exports =
             [You can donate here!](https://www.paypal.me/speckyy)
         """
 
-        msg.reply client.embed "#{donations}\n#{other}"
+        client.embed "#{donations}\n#{other}"

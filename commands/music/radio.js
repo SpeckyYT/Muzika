@@ -60,7 +60,7 @@ module.exports = {
         isPlaying: false,
     },
     async call(client, msg, ctx){
-        if(!ctx.body) return msg.reply(embed(client));
+        if(!ctx.body) return embed(client);
         const playlist =
             radios.map(r => ({
                 value: compareTwoStrings(
@@ -78,7 +78,7 @@ module.exports = {
             shuffle: true,
         });
         client.player.toggleQueueLoop(msg);
-        return msg.reply(embed(client, playlist));
+        return embed(client, playlist);
     }
 }
 

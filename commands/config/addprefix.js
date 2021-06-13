@@ -17,7 +17,7 @@ module.exports = {
     },
     async call(client, msg, ctx){
         if(!ctx.body)
-            return msg.reply(client.error('No prefix provided'));
+            return client.error('No prefix provided');
 
         const prefixkey = client.dbKey(msg.guild.id,'prefix');
 
@@ -26,20 +26,13 @@ module.exports = {
         if(!Array.isArray(prev)) prev = [];
 
         if(prev.includes(ctx.body.toLowerCase()))
-            return msg.reply(
-                client.error(`Prefix ${ctx.body} already exists.`)
-            );
+            return client.error(`Prefix ${ctx.body} already exists.`);
+
         if(prev.length > 10)
-            return msg.reply(
-                client.error(`I guess ${prev.length} prefixes are more than enough.`)
-            );
+            return client.error(`I guess ${prev.length} prefixes are more than enough.`);
 
         db.set(prefixkey, [ ...prev, ctx.body.toLowerCase() ]);
 
-        return msg.reply(
-            client.success(
-                `Prefix \`${Util.escapeInlineCode(ctx.body)}\` got successfully added to this server!`
-            )
-        );
+        return client.success(`Prefix \`${Util.escapeInlineCode(ctx.body)}\` got successfully added to this server!`);
     }
 }

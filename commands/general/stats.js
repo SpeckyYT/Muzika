@@ -25,7 +25,7 @@ module.exports = {
             `🖥️ Device Uptime: ${pms(os.uptime() * 1000)}`,
         ];
         const strings = await Promise.all(promises);
-        return msg.reply(client.embed(strings.join('\n')));
+        return client.embed(strings.join('\n'));
     }
 }
 

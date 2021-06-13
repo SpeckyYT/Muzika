@@ -24,8 +24,6 @@ module.exports =
             # Longer than queue
             string3 = next.length > queueSize && "and other #{next.length-queueSize} songs...".code()
 
-        msg.reply(
-            client.embed()
-            .setTitle "Queue"
-            .setDescription [string1,string2,string3].filter((s) -> s).join '\n'
-        )
+        client.embed()
+        .setTitle "Queue"
+        .setDescription [string1,string2,string3].filter((s) -> s).join '\n'

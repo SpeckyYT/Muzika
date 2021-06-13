@@ -20,31 +20,29 @@ module.exports =
         embed = client.embed()
         if ctx.arguments.length
             command = client.getCommand ctx.arguments[0].toLowerCase()
-            msg.reply(
-                if command
-                    [ name, ...aliases ] = command.trigger
-                    embed.setTitle "Command: `#{name}`"
-                    embed.addFields [
-                            name: 'Usage'
-                            value: "`#{prefix} #{name}#{if command.usage then " #{command.usage}" else ''}`"
+            if command
+                [ name, ...aliases ] = command.trigger
+                embed.setTitle "Command: `#{name}`"
+                embed.addFields [
+                        name: 'Usage'
+                        value: "`#{prefix} #{name}#{if command.usage then " #{command.usage}" else ''}`"
+                        inline: yes
+                    ,
+                        if aliases.length > 0
+                            name: 'Aliases'
+                            value: "#{aliases.map(block).join(' ')}"
                             inline: yes
-                        ,
-                            if aliases.length > 0
-                                name: 'Aliases'
-                                value: "#{aliases.map(block).join(' ')}"
-                                inline: yes
-                        ,
+                    ,
 
-                            name: 'Category'
-                            value: "`#{command.category || 'Other'}`"
-                            inline: yes
-                    ].filter (n) -> n
-                    embed
-                else
-                    embed.setTitle "Command not found!"
-                    embed.setColor process.env.ERROR_COLOR
-                    embed
-            )
+                        name: 'Category'
+                        value: "`#{command.category || 'Other'}`"
+                        inline: yes
+                ].filter (n) -> n
+                embed
+            else
+                embed.setTitle "Command not found!"
+                embed.setColor process.env.ERROR_COLOR
+                embed
         else
             help = module.exports.trigger[0]
 
@@ -88,7 +86,7 @@ module.exports =
                     .join '\n'
                 }
             """.trim()
-            msg.reply embed
+            embed
 
 block = (c,b) ->
     if typeof b isnt 'string' then b = ''

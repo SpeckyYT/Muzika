@@ -9,7 +9,7 @@ module.exports = {
         isPlaying: null,
     },
     async call(client, msg, ctx){
-        if(!ctx.body) return msg.reply('You have to include a song to play.');
+        if(!ctx.body) return client.error('You have to include a song to play.');
         const search = {
             search: ctx.body,
             requestedBy: msg.author.tag,
@@ -19,12 +19,10 @@ module.exports = {
                 client.player.addToQueue(msg, search) :
                 client.player.play(msg, search)
         );
-        return msg.reply(
-            client.embed()
-            .setTitle(song.name)
-            .setDescription(`Author: ${song.author}\nDuration: ${song.duration}\nRequested by: ${song.requestedBy}`)
-            .setURL(song.url)
-            .setImage(song.thumbnail)
-        )
+        return client.embed()
+        .setTitle(song.name)
+        .setDescription(`Author: ${song.author}\nDuration: ${song.duration}\nRequested by: ${song.requestedBy}`)
+        .setURL(song.url)
+        .setImage(song.thumbnail)
     }
 }

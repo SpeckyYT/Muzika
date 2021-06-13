@@ -5,4 +5,4 @@ module.exports =
     category: 'music'
     call: (client, msg, ctx) ->
         client.player.stop msg
-        msg.reply client.success 'Stopped playing.'
+        client.success 'Stopped playing.'

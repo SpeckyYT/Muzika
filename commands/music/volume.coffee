@@ -8,7 +8,7 @@ module.exports =
     call: (client, msg, ctx) ->
         volume = parseInt ctx.body
         if isNaN volume
-            return msg.reply client.embed().setDescription "Current volume is #{client.player.getVolume msg}%"
+            return client.embed "Current volume is #{client.player.getVolume msg}%"
         newVolume = volume.clamp 10, 250
         client.player.setVolume msg, newVolume
-        msg.reply client.success "Volume got set to #{newVolume}%"
+        client.success "Volume got set to #{newVolume}%"

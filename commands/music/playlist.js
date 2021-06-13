@@ -19,18 +19,15 @@ module.exports = {
 
         const song = playlist.videos[0];
 
-        return msg.reply(
-            song ?
-                client.embed()
-                .setTitle(song.name)
-                .setDescription(`Author: ${song.author}\nDuration: ${song.duration}\nRequested by: ${song.requestedBy}`)
-                .addField('Added PlayList',`Songs: ${playlist.videos.length}`)
-                .setURL(playlist.url)
-                :
-                client.embed()
-                .setTitle('Added PlayList!')
-                .setDescription(`Songs: ${playlist.videos.length}`)
-                .setURL(playlist.url)
-        )
+        return song ?
+            client.embed()
+            .setTitle(song.name)
+            .setDescription(`Author: ${song.author}\nDuration: ${song.duration}\nRequested by: ${song.requestedBy}`)
+            .addField('Added PlayList',`Songs: ${playlist.videos.length}`)
+            .setURL(playlist.url) :
+            client.embed()
+            .setTitle('Added PlayList!')
+            .setDescription(`Songs: ${playlist.videos.length}`)
+            .setURL(playlist.url)
     }
 }

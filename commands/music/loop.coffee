@@ -10,4 +10,4 @@ module.exports =
             when 'no', 'false', 'off' then false
             else not (client.player.getQueue msg).repeatMode
         client.player.setRepeatMode msg, stateChange
-        msg.reply client.success "Loop got set to `#{stateChange}`"
+        client.success "Loop got set to `#{stateChange}`"

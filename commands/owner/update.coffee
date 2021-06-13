@@ -16,6 +16,6 @@ module.exports =
             await run 'git reset --hard'
             await run 'git fetch --all'
             await run 'git pull origin'
-            msg.reply client.success "Bot got updated successfully!"
+            client.success "Bot got updated successfully!"
         catch
-            msg.reply client.error "Was unable to update the bot"
+            client.error "Was unable to update the bot"
