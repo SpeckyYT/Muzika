@@ -86,7 +86,10 @@ module.exports = {
         }
 
         const limit = checkLimits(command);
-        if(limit) return msg.reply(client.error(limit));
+        if(limit) return msg.reply({
+            embeds: [client.error(limit)],
+            failIfNotExists: false,
+        });
 
         promisify(client.getType(command,'function'))(client, msg, ctx)
         .then(res => {
@@ -112,12 +115,10 @@ module.exports = {
             }
         })
         .catch(err => {
-            return msg.reply(
-                new MessageEmbed()
-                .setTitle('Error!')
-                .setDescription(`${err}`.split('\n')[0])
-                .setColor(process.env.ERROR_COLOR)
-            )
+            return msg.reply({
+                embeds: [client.error(`${err}`.split('\n')[0])],
+                failIfNotExists: false,
+            })
         })
     }
 }
