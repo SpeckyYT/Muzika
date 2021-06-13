@@ -90,8 +90,26 @@ module.exports = {
 
         promisify(client.getType(command,'function'))(client, msg, ctx)
         .then(res => {
-            if(res instanceof MessageEmbed) return msg.reply(res);
-            if(typeof res == 'string') return msg.reply(res);
+            if(Array.isArray(res)){
+                if(res.some(e => e instanceof MessageEmbed)){
+                    return msg.reply({
+                        embeds: res.filter(e => e instanceof MessageEmbed),
+                        failIfNotExists: false,
+                    });
+                }
+                if(res.some(e => typeof e == 'string')){
+                    return msg.reply(res.join('\n'));
+                }
+            }
+            if(res instanceof MessageEmbed){
+                return msg.reply({
+                    embeds: [res],
+                    failIfNotExists: false,
+                });
+            }
+            if(typeof res == 'string'){
+                return msg.reply(res);
+            }
         })
         .catch(err => {
             return msg.reply(
