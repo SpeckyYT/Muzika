@@ -5,7 +5,7 @@ module.exports = (client) ->
         return "```#{script}\n#{code}\n```"
 
     String::capitalize = () ->
-        return "#{@}" if not @.length
+        return "" if not @.length
         [ first, ...rest ] = @
         "#{first.toUpperCase()}#{rest.join ''}"
 

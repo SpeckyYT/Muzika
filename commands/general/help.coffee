@@ -26,7 +26,7 @@ module.exports =
                     embed.setTitle "Command: `#{name}`"
                     embed.addFields [
                             name: 'Usage'
-                            value: "`#{prefix}#{name}#{if command.usage then " #{command.usage}" else ''}`"
+                            value: "`#{prefix} #{name}#{if command.usage then " #{command.usage}" else ''}`"
                             inline: yes
                         ,
                             if aliases.length > 0
