@@ -27,6 +27,6 @@ module.exports =
 
         if evaluated instanceof Promise
             message.edit inspectM await evaluated.catch (e) -> "#{e}"
-        
+
         if Array.isArray evaluated
             msg.edit inspectM await Promise.all(evaluated).catch (e) -> "#{e}"
