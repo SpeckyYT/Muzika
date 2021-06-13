@@ -31,7 +31,8 @@ module.exports = {
 
 function bar(value,max){
     const size = 16;
-    const progress = Math.round((value / max) * size);
+    const percent = value / max;
+    const progress = Math.round(percent * size);
     const remaining = size - progress;
-    return `${'█'.repeat(progress)}${'░'.repeat(remaining)}`;
+    return `${'█'.repeat(progress)}${'░'.repeat(remaining)} \`[${(100*percent).toFixed(2)}%]\``;
 }
