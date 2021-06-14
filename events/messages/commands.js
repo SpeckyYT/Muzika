@@ -115,6 +115,14 @@ module.exports = {
             }
         })
         .catch(err => {
+            if(err?.context){
+                if(playerErrors[err.context]){
+                    return msg.reply({
+                        embeds: [client.error(playerErrors[err.context])],
+                        failIfNotExists: false,
+                    })
+                }
+            }
             return msg.reply({
                 embeds: [client.error(`${err}`.split('\n')[0])],
                 failIfNotExists: false,
@@ -135,3 +143,15 @@ const promisify = (f) =>
         })
 
 const isObject = (obj) => typeof obj == 'object' && obj;
+
+const playerErrors = {
+    SearchIsNull: "No song with that query was found.",
+    InvalidPlaylist: "No Playlist was found with that link.",
+    InvalidSpotify: "Spotify Song was found with that link.",
+    QueueIsNull: "There is no music playing right now.",
+    VoiceChannelTypeInvalid: "You need to be in a Voice Channel to play music.",
+    LiveUnsupported: "Livestreams aren't supported.",
+    VideoUnavailable: "Something went wrong while playing the current song, skipping...",
+    NotANumber: "The provided argument was Not A Number.",
+    MessageTypeInvalid: "The Message object was not provided.",
+}
