@@ -21,7 +21,7 @@ module.exports = {
             osu.mem.free().then(f => `💾 RAM Usage: ${bar(f.totalMemMb-f.freeMemMb,f.totalMemMb)}`),
             "",
             `🤖 ${username} Uptime: ${pms(client.uptime)}`,
-            `📠 Process Uptime: ${pms(client.uptime)}`,
+            `📠 Process Uptime: ${pms(process.uptime() * 1000)}`,
             `🖥️ Device Uptime: ${pms(os.uptime() * 1000)}`,
         ];
         const strings = await Promise.all(promises);
