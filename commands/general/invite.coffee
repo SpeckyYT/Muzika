@@ -17,6 +17,7 @@ module.exports =
                 value: clickHere "#{
                     client.generateInvite
                         permissions: Permissions.ALL
+                        scopes: ['bot']
                 }"
                 inline: yes
             ,
