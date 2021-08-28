@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 const { parse } = require('discord-command-parser');
 
 module.exports = {
-    event: 'message',
+    event: 'messageCreate',
     call(client, msg){
         if(msg.author.bot) return;
 
@@ -64,7 +64,7 @@ module.exports = {
                 [
                     'isPlaying',
                     v => `This command ${v ? "can only be" : "can't be" } run if the bot is playing music.`,
-                    v => !v != !client.player.isPlaying(msg),
+                    v => !v != !client.player.hasQueue(msg.guild.id),
                 ],
                 [
                     'botPerms',
