@@ -20,6 +20,11 @@ const radios = [
         url: "https://youtube.com/playlist?list=PLC1og_v3eb4hrv4wsqG1G5dsNZh9bIscJ",
         from: 'Melvin',
     },
+    {
+        name: 'S3RL',
+        url: "https://www.youtube.com/playlist?list=PLQjKs2twouB82-lKt4RM8SA6JNi5hELhT",
+        from: 'Specky'
+    },
 
     // CLASSICAL MUSIC
     {
