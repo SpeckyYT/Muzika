@@ -7,6 +7,12 @@ module.exports = (client) ->
             return value if typeof value == type
         normal
 
+    client.getQueue = (id) ->
+        if client.player.hasQueue id
+            client.player.getQueue id
+        else
+            client.player.createQueue id
+
     client.embed = (desc) ->
         embed =  new MessageEmbed()
         .setAuthor "#{client.user.username} 🎵", client.user.displayAvatarURL(), 'https://github.com/SpeckyYT/Muzika'

@@ -40,6 +40,7 @@ module.exports = (client) => {
                         guilds: true,
                         vc: true,
                         sameVC: true,
+                        isPlaying: true,
                     });
                     break;
             }
