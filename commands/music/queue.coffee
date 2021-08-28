@@ -9,7 +9,7 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        queue = client.player.getQueue msg
+        queue = client.getQueue msg.guild.id
 
         [current, ...next] = queue.songs
 

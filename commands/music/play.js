@@ -10,15 +10,14 @@ module.exports = {
     },
     async call(client, msg, ctx){
         if(!ctx.body) return client.error('You have to include a song to play.');
-        const search = {
-            search: ctx.body,
+        const options = {
             requestedBy: msg.author.tag,
         }
-        const song = await (
-            client.player.isPlaying(msg) ?
-                client.player.addToQueue(msg, search) :
-                client.player.play(msg, search)
-        );
+        const queue = client.getQueue(msg.guild.id);
+
+        await queue.join(msg.member.voice.channel);
+        const song = await queue.play(ctx.body,options);
+
         return client.embed()
         .setTitle(song.name)
         .setDescription(`Author: ${song.author}\nDuration: ${song.duration}\nRequested by: ${song.requestedBy}`)

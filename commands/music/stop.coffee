@@ -4,5 +4,6 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        client.player.stop msg
+        client.getQueue msg.guild.id
+        .stop()
         client.success 'Stopped playing.'

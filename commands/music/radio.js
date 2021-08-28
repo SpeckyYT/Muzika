@@ -61,6 +61,8 @@ module.exports = {
     },
     async call(client, msg, ctx){
         if(!ctx.body) return embed(client);
+
+        const queue = client.getQueue(msg.guild.id);
         const playlist =
             radios.map(r => ({
                 value: compareTwoStrings(
@@ -71,13 +73,13 @@ module.exports = {
             }))
             .sort((a,b) => b.value-a.value)[0].radio;
 
-        await client.player.playlist(msg, {
-            search: playlist.url,
+        await queue.join(msg.member.voice.channel);
+        await queue.playlist(playlist.url, {
             requestedBy: msg.author.tag,
-            maxSongs: 500,
+            maxSongs: 1000,
             shuffle: true,
         });
-        client.player.toggleQueueLoop(msg);
+        queue.setRepeatMode(2);
         return embed(client, playlist);
     }
 }

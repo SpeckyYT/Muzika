@@ -6,9 +6,10 @@ module.exports =
     category: 'music'
     usage: '<percentage>'
     call: (client, msg, ctx) ->
+        queue = client.getQueue msg.guild.id
         volume = parseInt ctx.body
         if isNaN volume
-            return client.embed "Current volume is #{client.player.getVolume msg}%"
+            return client.embed "Current volume is #{queue.volume}%"
         newVolume = volume.clamp 10, 250
-        client.player.setVolume msg, newVolume
+        queue.setVolume newVolume
         client.success "Volume got set to #{newVolume}%"

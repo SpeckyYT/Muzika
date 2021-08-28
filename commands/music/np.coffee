@@ -5,19 +5,15 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        song = client.player.nowPlaying msg
+        queue = client.getQueue msg.guild.id
+        song = queue.nowPlaying
 
         client.embed()
         .setTitle song.name
-        .setDescription [
-                "Author: #{song.author}"
-                "Duration: #{song.duration}"
-                client.player.createProgressBar msg,
-                    size: 20,
-                    arrow: '>',
-                    block: '=',
-                .code()
-                "Requested by: #{song.requestedBy}"
-            ]
+        .setDescription """
+                Author: `#{song.author}`
+                Duration: `#{queue.createProgressBar time: true, size: 10}`
+                Requested by: `#{song.requestedBy}`
+            """
         .setURL song.url
         .setImage song.thumbnail

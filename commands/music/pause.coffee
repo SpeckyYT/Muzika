@@ -4,5 +4,6 @@ module.exports =
     ]
     category: 'music'
     call: (client, msg, ctx) ->
-        client.player.pause msg
+        client.getQueue msg.guild.id
+        .setPaused true
         client.success 'Playback paused.'
