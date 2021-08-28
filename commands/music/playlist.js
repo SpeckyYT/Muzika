@@ -12,10 +12,9 @@ module.exports = {
         if(!ctx.body) return client.error('You have to include a playlist that you want to queue.');
 
         const queue = client.getQueue(msg.guild.id);
-        const playlist = await queue.playlist(msg, {
-            search: ctx.body,
+        const playlist = await queue.playlist(ctx.body, {
             requestedBy: msg.author.tag,
-            maxSongs: 250,
+            maxSongs: 1000,
         });
 
         const song = playlist.songs[0];
