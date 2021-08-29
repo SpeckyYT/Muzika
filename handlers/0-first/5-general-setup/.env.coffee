@@ -10,7 +10,7 @@ env =
     ERROR_COLOR: "The embeds' color on errors (Discord.js ColorResolvable)"
     OWNERS: [
         "The owners of the bot (Array of IDs)"
-        "A string also works, but it's recommended to not do it",
+        "A string also works, but it's recommended to not do it"
         "But if you ever wanted to use a string, just put a space between IDs"
     ]
 
