@@ -78,7 +78,6 @@ module.exports = {
             }))
             .sort((a,b) => b.value-a.value)[0].radio;
 
-        await queue.join(msg.member.voice.channel);
         await queue.playlist(playlist.url, {
             requestedBy: msg.author.tag,
             maxSongs: 1000,

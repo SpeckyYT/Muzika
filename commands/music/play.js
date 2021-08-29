@@ -14,14 +14,8 @@ module.exports = {
             requestedBy: msg.author.tag,
         }
         const queue = client.getQueue(msg.guild.id);
-
-        await queue.join(msg.member.voice.channel);
         const song = await queue.play(ctx.body,options);
 
-        return client.embed()
-        .setTitle(song.name)
-        .setDescription(`Author: ${song.author}\nDuration: ${song.duration}\nRequested by: ${song.requestedBy}`)
-        .setURL(song.url)
-        .setImage(song.thumbnail)
+        return client.songEmbed(song);
     }
 }

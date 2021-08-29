@@ -13,6 +13,23 @@ module.exports = (client) ->
         else
             client.player.createQueue id
 
+    client.songEmbed = (song, queue) ->
+        content = [
+            "Author: `#{song.author}`"
+            "Duration: `#{
+                if not queue 
+                    song.duration
+                else
+                    queue.createProgressBar time: true, size: 10
+            }`"
+            "Requested by: `#{song.requestedBy}`"
+        ]
+        client.embed()
+        .setTitle song.name
+        .setDescription content.join '\n' 
+        .setURL song.url
+        .setImage song.thumbnail
+
     client.embed = (desc) ->
         embed =  new MessageEmbed()
         .setAuthor "#{client.user.username} 🎵", client.user.displayAvatarURL(), 'https://github.com/SpeckyYT/Muzika'
