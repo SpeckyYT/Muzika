@@ -146,13 +146,17 @@ module.exports = {
 const isObject = (obj) => typeof obj == 'object' && obj;
 
 const playerErrors = {
-    SearchIsNull: "No song with that query was found.",
-    InvalidPlaylist: "No Playlist was found with that link.",
-    InvalidSpotify: "Spotify Song was found with that link.",
-    QueueIsNull: "There is no music playing right now.",
-    VoiceChannelTypeInvalid: "You need to be in a Voice Channel to play music.",
-    LiveUnsupported: "Livestreams aren't supported.",
-    VideoUnavailable: "Something went wrong while playing the current song, skipping...",
-    NotANumber: "The provided argument was Not A Number.",
-    MessageTypeInvalid: "The Message object was not provided.",
+    Unknown: "There was an Unknown Error.",
+    QueueDestroyed: "The Queue was destroyed.",
+    NothingPlaying: "There is currently no Song playing in the Voice Channel.",
+    UnknownVoice: "The provided Member is not in a Voice Channel.",
+    ChannelTypeInvalid: "The provided Channel is not a Voice Channel.",
+    VoiceConnectionError: "There was an Error while starting the Voice Stream",
+    NoVoiceConnection: "There is no Queue#connection [you should use Queue#join()] first.",
+    UnknownRepeatMode: "The provided RepeatMode was not valid.",
+    ResourceNotReady: "The AudioResource was not ready.",
+    InvalidGuild: "The provided Guild was invalid.",
+    SearchIsNull: "The was no YouTube song found by that query.",
+    InvalidSpotify: "The was no Spotify song found with that link.",
+    InvalidPlaylist: "There was no Playlist found with that link.",
 }
