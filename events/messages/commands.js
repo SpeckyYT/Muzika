@@ -76,6 +76,11 @@ module.exports = {
                     perms => `You're missing the following permission(s): \`${msg.member.permissions.missing(perms).join(' ')}\``,
                     perms => msg.member ? !msg.member.permissions.has(perms) : false,
                 ],
+                [
+                    'inDevelopment',
+                    "This command is currently in development...",
+                    v => v,
+                ],
             ];
             for(const [key,value,func] of limits){
                 if([null,undefined].includes(command.limits[key])) continue;
