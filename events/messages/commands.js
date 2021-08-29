@@ -3,7 +3,7 @@ const { parse } = require('discord-command-parser');
 
 module.exports = {
     event: 'messageCreate',
-    call(client, msg){
+    async call(client, msg){
         if(msg.author.bot) return;
 
         const defaultPrefixes = [
@@ -91,7 +91,19 @@ module.exports = {
             failIfNotExists: false,
         });
 
-        promisify(client.getType(command,'function'))(client, msg, ctx)
+        return new Promise(async (res,rej) => {
+            if(command.category == 'music'){
+                if(!msg.guild.me.voice.channelID){
+                    const queue = client.getQueue(msg.guild.id);
+                    queue.join(msg.member.voice.channel)
+                    .then(res)
+                    .catch(rej)
+                } else res()
+            } else res()
+        })
+        .then(() => {
+            return client.getType(command,'function')(client, msg, ctx)
+        })
         .then(res => {
             if(Array.isArray(res)){
                 if(res.some(e => e instanceof MessageEmbed)){
@@ -130,17 +142,6 @@ module.exports = {
         })
     }
 }
-
-const promisify = (f) =>
-    (...params) =>
-        new Promise(async (res,rej) => {
-            if(typeof f != 'function') res();
-            try{
-                res(await f(...params));
-            }catch(err){
-                rej(err);
-            }
-        })
 
 const isObject = (obj) => typeof obj == 'object' && obj;
 
