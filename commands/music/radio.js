@@ -62,7 +62,7 @@ module.exports = {
     category: 'music',
     usage: '[radio name]',
     limits: {
-        isPlaying: false,
+        isPlaying: null,
     },
     async call(client, msg, ctx){
         if(!ctx.body) return embed(client);
