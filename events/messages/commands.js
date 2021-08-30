@@ -64,7 +64,7 @@ module.exports = {
                 [
                     'isPlaying',
                     v => `This command ${v ? "can only be" : "can't be" } run if the bot is playing music.`,
-                    v => !v != !client.player.hasQueue(msg.guild.id),
+                    v => !v != !(client.player.hasQueue(msg.guild.id) && client.player.getQueue(msg.guild.id).isPlaying),
                 ],
                 [
                     'botPerms',
