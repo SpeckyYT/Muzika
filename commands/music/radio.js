@@ -1,79 +1,91 @@
+const { compareTwoStrings } = require('string-similarity');
+const { format } = require('url');
+
 const radios = [
     // EDM/DUBSTEP/TECHNO/TRAP/ETC
     {
         name: 'Muse',
-        url: "https://youtube.com/playlist?list=PLTpHAWOyakLaaSnO1SyJor4r0y_ZmYwHg",
+        url: "PLTpHAWOyakLaaSnO1SyJor4r0y_ZmYwHg",
         from: 'Ranger',
     },
     {
         name: 'Black Wolf',
-        url: "https://youtube.com/playlist?list=PLNiLQueObdrT1TeviIQ7xJNqElO-55WRT",
+        url: "PLNiLQueObdrT1TeviIQ7xJNqElO-55WRT",
         from: 'Black Wolf',
     },
     {
         name: 'NCS',
-        url: "https://youtube.com/playlist?list=PLzkuLC6Yvumv_Rd5apfPRWEcjf9b1JRnq",
+        url: "PLzkuLC6Yvumv_Rd5apfPRWEcjf9b1JRnq",
         from: 'Specky',
     },
     {
         name: 'Trap Nation',
-        url: "https://youtube.com/playlist?list=PLC1og_v3eb4hrv4wsqG1G5dsNZh9bIscJ",
+        url: "PLC1og_v3eb4hrv4wsqG1G5dsNZh9bIscJ",
         from: 'Melvin',
     },
     {
         name: 'S3RL',
-        url: "https://www.youtube.com/playlist?list=PLQjKs2twouB82-lKt4RM8SA6JNi5hELhT",
-        from: 'Specky'
+        url: "PLQjKs2twouB82-lKt4RM8SA6JNi5hELhT",
+        from: 'Specky',
     },
 
     // CLASSICAL MUSIC
     {
         name: 'BombSquad',
-        url: "https://youtube.com/playlist?list=PLmjn_XKBcplZObP4r1jksIIr5nmO4dANf",
+        url: "PLmjn_XKBcplZObP4r1jksIIr5nmO4dANf",
         from: 'Specky',
     },
     {
         name: 'RCT',
-        url: "https://youtube.com/playlist?list=PLxt6cj1N5f6A3Ag0NF5Ew1l0QdcfMyckB",
+        url: "PLxt6cj1N5f6A3Ag0NF5Ew1l0QdcfMyckB",
         from: 'Specky',
     },
 
     // GAMES
     {
         name: 'Celeste',
-        url: "https://youtube.com/playlist?list=PL1eFjFaZ9VkyDcVnvJyEC3P8tCFpZpRoU",
+        url: "PL1eFjFaZ9VkyDcVnvJyEC3P8tCFpZpRoU",
         from: 'Specky',
     },
     {
         name: 'Spore',
-        url: "https://youtube.com/playlist?list=PL8Vx3sNFPBjVUL8_XrD0zorhfoNBsF9mR",
+        url: "PL8Vx3sNFPBjVUL8_XrD0zorhfoNBsF9mR",
         from: 'Specky',
     },
     {
         name: 'Peggle',
-        url: "https://youtube.com/playlist?list=PL61169E5347F3141E",
+        url: "PL61169E5347F3141E",
         from: 'Specky',
     },
     {
         name: 'Peggle Nights',
-        url: "https://youtube.com/playlist?list=PLADAE9644B80F9A86",
+        url: "PLADAE9644B80F9A86",
         from: 'Specky',
     },
     {
         name: 'Undertale',
-        url: "https://youtube.com/playlist?list=PLpJl5XaLHtLX-pDk4kctGxtF4nq6BIyjg",
+        url: "PLpJl5XaLHtLX-pDk4kctGxtF4nq6BIyjg",
         from: 'Specky',
-    }
+    },
 
     // VARIOUS
     {
         name: 'osu!',
-        url: "https://youtube.com/playlist?list=PLt2s8p17wbVywg7bINV9nj7GPG5Oj0B4W",
+        url: "PLt2s8p17wbVywg7bINV9nj7GPG5Oj0B4W",
         from: 'Specky',
     },
-];
-
-const { compareTwoStrings } = require('string-similarity');
+]
+.map(radio => {
+    radio.url = format({
+        protocol: 'https',
+        hostname: 'youtube.com',
+        pathname: 'playlist',
+        query: {
+            list: radio.url
+        },
+    });
+    return radio;
+});
 
 module.exports = {
     trigger: [
