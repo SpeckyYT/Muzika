@@ -44,6 +44,26 @@ const radios = [
         url: "https://youtube.com/playlist?list=PL1eFjFaZ9VkyDcVnvJyEC3P8tCFpZpRoU",
         from: 'Specky',
     },
+    {
+        name: 'Spore',
+        url: "https://youtube.com/playlist?list=PL8Vx3sNFPBjVUL8_XrD0zorhfoNBsF9mR",
+        from: 'Specky',
+    },
+    {
+        name: 'Peggle',
+        url: "https://youtube.com/playlist?list=PL61169E5347F3141E",
+        from: 'Specky',
+    },
+    {
+        name: 'Peggle Nights',
+        url: "https://youtube.com/playlist?list=PLADAE9644B80F9A86",
+        from: 'Specky',
+    },
+    {
+        name: 'Undertale',
+        url: "https://youtube.com/playlist?list=PLpJl5XaLHtLX-pDk4kctGxtF4nq6BIyjg",
+        from: 'Specky',
+    }
 
     // VARIOUS
     {
