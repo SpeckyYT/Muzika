@@ -13,6 +13,7 @@ env =
         "A string also works, but it's recommended to not do it"
         "But if you ever wanted to use a string, just put a space between IDs"
     ]
+    MAX_PLAYLIST_SONGS: 50
 
 module.exports = (client) ->
     dotenvPath = path.join process.cwd(), '.env'

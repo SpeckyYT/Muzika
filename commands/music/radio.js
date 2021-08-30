@@ -112,7 +112,7 @@ module.exports = {
 
         await queue.playlist(playlist.url, {
             requestedBy: msg.author.tag,
-            maxSongs: 1000,
+            maxSongs: process.env.MAX_PLAYLIST_SONGS,
             shuffle: true,
         });
         queue.setRepeatMode(2);

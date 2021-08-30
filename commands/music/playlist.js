@@ -14,7 +14,7 @@ module.exports = {
         const queue = client.getQueue(msg.guild.id);
         const playlist = await queue.playlist(ctx.body, {
             requestedBy: msg.author.tag,
-            maxSongs: 1000,
+            maxSongs: process.env.MAX_PLAYLIST_SONGS,
         });
 
         const song = playlist.songs[0];
