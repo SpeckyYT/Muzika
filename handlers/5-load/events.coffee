@@ -2,6 +2,9 @@ path = require 'path'
 { validate, schedule } = require 'node-cron'
 
 module.exports = (client) ->
+    client.removeAllListeners()
+    client.schedules = []
+
     client.depsLoader(
         path.join(process.cwd(), 'events')
         'EVENTS'
@@ -10,7 +13,6 @@ module.exports = (client) ->
             emitterName = pull.emitter || 'client'
             func = client.getType pull, 'function'
             throw new Error 'No function found' if not func
-            if not client.schedules then client.schedules = []
             for event in eventNames
                 if validate event
                     if not client.schedules.includes event

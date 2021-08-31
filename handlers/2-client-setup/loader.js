@@ -13,6 +13,7 @@ module.exports = (client) => {
         handler.find();
 
         handler.on('match', item => {
+            delete require.cache[item];
             const { base } = parse(item);
             try{
                 const pull = require(item);
