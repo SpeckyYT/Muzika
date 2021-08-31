@@ -20,7 +20,7 @@
     "coffeescript": "^2.5.1",
     "colors": "^1.4.0",
     "discord-command-parser": "^1.5.3",
-    "discord-music-player": "^8.0.1",
+    "discord-music-player": "^8.0.3-dev",
     "discord.js": "^13.1.0",
     "dotenv": "^9.0.2",
     "dotenv-stringify": "^2.0.6",
