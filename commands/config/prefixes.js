@@ -1,4 +1,5 @@
 const { Util: { escapeInlineCode } } = require('discord.js');
+const pluralize = require('pluralize');
 
 module.exports = {
     trigger: [
@@ -8,8 +9,7 @@ module.exports = {
     category: 'config',
     async call(client, msg, ctx){
         const customPrefixes = client.getPrefixes(msg);
-        const bot = customPrefixes.length ? 'no' : `yes (\`${process.env.CLIENT_PREFIX}\`)`;
-        const plural = customPrefixes.length == 1 ? '' : 'es';
+        const bot = customPrefixes.length ? 'No' : `Yes (\`${process.env.CLIENT_PREFIX}\`)`;
         const count = customPrefixes.length;
         const customs = customPrefixes.length ?
             customPrefixes.map(p => `\`${escapeInlineCode(p)}\``).join(' ') :
@@ -24,7 +24,7 @@ module.exports = {
                 inline: true,
             },
             {
-                name: `Custom prefix${plural}`,
+                name: `Custom ${pluralize('prefix',count)}`,
                 value: `[${count}] ${customs}`,
                 inline: true,
             }

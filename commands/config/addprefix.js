@@ -25,14 +25,17 @@ module.exports = {
         if(typeof prev == 'string') prev = [prev];
         if(!Array.isArray(prev)) prev = [];
 
-        if(prev.includes(ctx.body.toLowerCase()))
-            return client.error(`Prefix ${ctx.body} already exists.`);
+        const prefix = ctx.body.toLowerCase();
+        const inlinePrefix = `\`${Util.escapeMarkdown(prefix)}\``;
+
+        if(prev.includes(prefix))
+            return client.error(`Prefix ${inlinePrefix} already exists.`);
 
         if(prev.length > 10)
             return client.error(`I guess ${prev.length} prefixes are more than enough.`);
 
         db.set(prefixkey, [ ...prev, ctx.body.toLowerCase() ]);
 
-        return client.success(`Prefix \`${Util.escapeInlineCode(ctx.body)}\` got successfully added to this server!`);
+        return client.success(`Prefix ${inlinePrefix} got successfully added to this server!`);
     }
 }

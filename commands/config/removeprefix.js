@@ -25,11 +25,14 @@ module.exports = {
         if(typeof prev == 'string') prev = [prev];
         if(!Array.isArray(prev)) prev = [];
 
-        if(!prev.includes(ctx.body.toLowerCase()))
-            return client.error(`Prefix ${ctx.body} doesn't exist.`);
+        const prefix = ctx.body.toLowerCase();
+        const inlinePrefix = `\`${Util.escapeMarkdown(prefix)}\``;
 
-        db.set(prefixkey, prev.filter(p => p.toLowerCase() != ctx.body.toLowerCase()));
+        if(!prev.includes(prefix))
+            return client.error(`Prefix ${inlinePrefix} doesn't exist.`);
 
-        return client.success(`Prefix \`${Util.escapeInlineCode(ctx.body)}\` got successfully removed from this server!`);
+        db.set(prefixkey, prev.filter(p => p.toLowerCase() != prefix));
+
+        return client.success(`Prefix ${inlinePrefix} got successfully removed from this server!`);
     }
 }
