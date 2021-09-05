@@ -107,7 +107,8 @@ module.exports = {
             } else res()
         })
         .then(() => {
-            return client.getType(command,'function')(client, msg, ctx)
+            const func = client.getType(command,'function')||(()=>{});
+            return func(client, msg, ctx);
         })
         .then(res => {
             if(Array.isArray(res)){
