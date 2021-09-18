@@ -37,7 +37,7 @@ const radios = [
     },
     {
         name: 'RCT',
-        url: "PLxt6cj1N5f6A3Ag0NF5Ew1l0QdcfMyckB",
+        url: "PLk_H7HxvSE2dWfxCeBQqXN9eAXd3qZmqE",
         from: 'Specky',
     },
 
