@@ -35,11 +35,6 @@ const radios = [
         url: "PLmjn_XKBcplZObP4r1jksIIr5nmO4dANf",
         from: 'Specky',
     },
-    {
-        name: 'RCT',
-        url: "PLk_H7HxvSE2dWfxCeBQqXN9eAXd3qZmqE",
-        from: 'Specky',
-    },
 
     // GAMES
     {
@@ -60,6 +55,11 @@ const radios = [
     {
         name: 'Peggle Nights',
         url: "PLADAE9644B80F9A86",
+        from: 'Specky',
+    },
+    {
+        name: 'RCT',
+        url: "PLk_H7HxvSE2dWfxCeBQqXN9eAXd3qZmqE",
         from: 'Specky',
     },
     {
