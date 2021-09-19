@@ -80,6 +80,7 @@ const radios = [
         from: 'Specky',
     },
 ]
+.sort((a,b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
 .map(radio => {
     radio.url = format({
         protocol: 'https',
