@@ -67,6 +67,11 @@ const radios = [
         url: "PLpJl5XaLHtLX-pDk4kctGxtF4nq6BIyjg",
         from: 'Specky',
     },
+    {
+        name: 'Super Monkey Ball DS',
+        url: "PLGLJRdMQazRYSUEC_Be_yYaIVKAKtEtkI",
+        from: 'Specky',
+    },
 
     // VARIOUS
     {
